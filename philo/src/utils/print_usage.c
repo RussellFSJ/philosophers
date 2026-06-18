@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_args.c                                       :+:      :+:    :+:   */
+/*   print_usage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 19:49:10 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/18 21:30:45 by rfoo             ###   ########.fr       */
+/*   Created: 2026/06/18 11:56:43 by rfoo              #+#    #+#             */
+/*   Updated: 2026/06/18 21:37:01 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	valid_args(int argc, char **argv)
+void	print_usage(void)
 {
-	if (argc != 5 && argc != 6)
-		return (0);
-	if (!ft_isnbr(argv[1]) || !ft_isnbr(argv[2])
-		|| !ft_isnbr(argv[3]) || !ft_isnbr(argv[4]))
-	{
-		printf("\n");
-		return (0);
-	}
-	return (1);
+	printf("Usage:\n");
+	printf("\t./philo <number_of_philosophers> <time_to_die> ");
+	printf("<time_to_eat> <time_to_sleep> [number_of_meals]\n");
+	printf("Example:\n");
+	printf("\t./philo 5 800 200 200 [7]");
 }

@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/18 00:18:25 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/06/18 12:01:03 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ typedef struct s_philo
 	t_constr		*constrs;
 }	t_philo;
 
-int	ft_atoi(const char *nptr);
-int	ft_isdigit(int c);
-int	ft_isnbr(const char *s);
+int		ft_atoi(const char *nptr);
+int		ft_isdigit(int c);
+int		ft_isnbr(const char *s);
+void	print_usage(void);
+
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 19:46:34 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/18 00:17:21 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/06/18 12:02:40 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	handle_args(t_philo *philo, int argc, char **argv)
-{
-	return ;
-}
+// void	handle_args(t_philo *philo, int argc, char **argv)
+// {
+// 	return ;
+// }
