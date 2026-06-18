@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 21:40:30 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/18 21:41:50 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/06/18 21:53:07 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	handle_error(char *err_msg)
 {
-	printf(err_msg);
-	printf("/n");
+	printf("%s\n", err_msg);
 	print_usage();
 }
