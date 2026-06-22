@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   constrs_cleanup.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 17:42:43 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/22 23:56:38 by rfoo             ###   ########.fr       */
+/*   Created: 2026/06/23 00:01:30 by rfoo              #+#    #+#             */
+/*   Updated: 2026/06/23 00:02:40 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philo(t_philo *philos)
+void	constrs_cleanup(t_constr *constrs)
 {
-	
+	if (constrs)
+		free(constrs);
 }
