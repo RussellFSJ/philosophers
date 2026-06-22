@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos_init.c                                      :+:      :+:    :+:   */
+/*   forks_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/22 18:17:45 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/22 22:57:23 by rfoo             ###   ########.fr       */
+/*   Created: 2026/06/22 20:04:10 by rfoo              #+#    #+#             */
+/*   Updated: 2026/06/22 22:42:52 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philo	*philos_init(int no_of_philos, t_constr *constrs)
+pthread_mutex_t	*forks_init(int no_of_philos)
 {
 	int				i;
-	t_philo			*philos;
 	pthread_mutex_t	*forks;
 
 	i = 0;
-	philos = malloc(sizeof(t_philo) * no_of_philos);
-	if (!philos)
-		return (NULL);
-	forks = forks_init(no_of_philos);
+	forks = malloc(sizeof(pthread_mutex_t) * no_of_philos);
 	if (!forks)
 		return (NULL);
 	while (i < no_of_philos)
 	{
-		philos[i].id = i + 1;
-		philos[i].meal_count = 0;
-		philos[i].last_meal_ts = 0;
-		philos[i].thread = 0;
-		philos[i].left_fork = &forks[i];
-		philos[i].right_fork = &forks[(i + 1) % no_of_philos];
-		philos[i].constrs = constrs;
+		if (pthread_mutex_init(&forks[i], NULL) != 0)
+		{
+			forks_cleanup(forks, i);
+			return (NULL);
+		}
 		i++;
 	}
-	return (philos);
+	return (forks);
 }
