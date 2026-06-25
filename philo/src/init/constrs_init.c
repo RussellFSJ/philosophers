@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 21:05:06 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/22 17:50:31 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/06/25 19:01:19 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_constr	*constrs_init(int argc, char **argv)
 	constrs->time_to_die = ft_atoi(argv[2]);
 	constrs->time_to_eat = ft_atoi(argv[3]);
 	constrs->time_to_sleep = ft_atoi(argv[4]);
+	constrs->simulation_end = 0;
 	if (argc == 6)
 		constrs->no_of_meals = ft_atoi(argv[5]);
 	else

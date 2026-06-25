@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 17:40:48 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/25 16:10:44 by rfoo             ###   ########.fr       */
+/*   Created: 2026/06/25 19:43:05 by rfoo              #+#    #+#             */
+/*   Updated: 2026/06/25 19:43:49 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	philo_routine(t_philo *philos)
 {
-	t_constr	*constrs;
-	t_philo		*philos;
-
-	if (!valid_args(argc, argv))
-		return (EXIT_FAILURE);
-	constrs = constrs_init(argc, argv);
-	if (!constrs)
-	{
-		printf("Error: Failed to initialise contraints.");
-		return (EXIT_FAILURE);
-	}
-	philos = philos_init(argc, constrs);
-	return (EXIT_SUCCESS);
+	return ;
 }

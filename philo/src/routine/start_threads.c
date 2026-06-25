@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   start_threads.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 17:40:48 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/25 16:10:44 by rfoo             ###   ########.fr       */
+/*   Created: 2026/06/25 16:56:54 by rfoo              #+#    #+#             */
+/*   Updated: 2026/06/25 19:44:38 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+int	start_threads(t_philo *philos, int no_of_ph, t_constr *constrs)
 {
-	t_constr	*constrs;
-	t_philo		*philos;
+	int	i;
 
-	if (!valid_args(argc, argv))
-		return (EXIT_FAILURE);
-	constrs = constrs_init(argc, argv);
-	if (!constrs)
+	while (i < no_of_ph)
 	{
-		printf("Error: Failed to initialise contraints.");
-		return (EXIT_FAILURE);
+		if (pthread_create(&philos[i].thread, NULL, philo_routine, &philos[i])
+			!= 0)
+		{
+			printf("Error: Failed to create philosopher thread %d\n.", i);
+			constrs->simulation_end = 1;
+			return (0);
+		}
+		i++;
 	}
-	philos = philos_init(argc, constrs);
-	return (EXIT_SUCCESS);
+	return (1);
 }
