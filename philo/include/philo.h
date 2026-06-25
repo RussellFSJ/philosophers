@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/25 19:44:31 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/06/25 19:49:29 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ pthread_mutex_t	*forks_init(int no_of_philos);
 t_philo			**philos_init(int argc, t_constr *constrs);
 void			monitor_routine(pthread_t monitor, t_constr *constrs);
 void			philo_routine(t_philo *philos);
-void			start_routine(t_philo *philos);
-int				start_threads(t_philo *philos, int no_of_ph, t_constr *constrs);
+void			start_routines(t_philo *philos, int no_of_ph, t_constr *cnstrs);
+int				start_threads(t_philo *philos, int no_of_ph, t_constr *cnstrs);
 int				ft_atoi(const char *nptr);
 int				ft_isdigit(int c);
 int				ft_isnbr(const char *s);
