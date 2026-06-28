@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/28 23:54:20 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/06/29 00:02:10 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void			philo_routine(t_philo philo);
 void			start_routines(t_philo *philos, int no_of_ph, t_constr *cnstrs);
 int				start_threads(t_philo *philos, int no_of_ph, t_constr *cnstrs);
 int				ft_atoi(const char *nptr);
+long			ft_atol(const char *nptr);
 int				ft_isdigit(int c);
 int				ft_isnbr(const char *s);
 long			get_time_in_ms(void);
