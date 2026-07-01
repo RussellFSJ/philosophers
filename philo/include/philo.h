@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/29 00:02:10 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/01 23:45:56 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ typedef struct s_constr
 	long	time_to_eat;
 	long	time_to_sleep;
 	int		no_of_meals;
+	int		simulation_start;
 	int		simulation_end;
+	long	simulation_start_time;
 }	t_constr;
 
 typedef struct s_philo
@@ -58,6 +60,7 @@ t_philo			**philos_init(int argc, t_constr *constrs);
 void			monitor_routine(pthread_t monitor, t_constr *constrs);
 void			philo_routine(t_philo philo);
 void			start_routines(t_philo *philos, int no_of_ph, t_constr *cnstrs);
+void			start_simulation(t_constr *constr);
 int				start_threads(t_philo *philos, int no_of_ph, t_constr *cnstrs);
 int				ft_atoi(const char *nptr);
 long			ft_atol(const char *nptr);
