@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:43:05 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/02 00:16:06 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/02 20:27:26 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,13 @@ static void wait_for_start(t_constr *constrs)
 {
 	while (!constrs->simulation_start)
 		usleep(100);
+}
+
+static void	take_forks(t_philo *philo)
+{
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(philo->left_fork);
+		pthread_mutex_lock(philo->right_fork);
+	}
 }
