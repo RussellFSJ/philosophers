@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/01 23:45:56 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/07 00:03:09 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ int				ft_isdigit(int c);
 int				ft_isnbr(const char *s);
 long			get_time_in_ms(void);
 void			handle_error(char *err_msg);
+void			print_status(int id, char *status);
+void			smart_sleep(t_constr *constrs, long duration);
 
 #endif
