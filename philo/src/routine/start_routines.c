@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 16:10:58 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/26 06:06:01 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/07 23:21:10 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	start_routines(t_philo *philos, int no_of_ph, t_constr *cnstrs)
 	i = 0;
 	if (!start_threads(philos, no_of_ph, cnstrs))
 		return ;
-	if (pthread_create(&monitor, NULL, monitor_routine, cnstrs) != 0)
+	if (pthread_create(&monitor, NULL, monitor_routine, philos) != 0)
 	{
 		printf("Error: Failed to create monitor thread.\n");
 		cnstrs->simulation_end = 1;

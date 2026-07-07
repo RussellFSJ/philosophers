@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/07 19:32:20 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/07 22:49:47 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef enum s_status
 {
+	TAKEN_FORK,
 	EATING,
 	SLEEPING,
 	THINKING,
@@ -30,13 +31,15 @@ typedef enum s_status
 
 typedef struct s_constr
 {
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
-	int		no_of_meals;
-	int		simulation_start;
-	int		simulation_end;
-	long	simulation_start_time;
+	int				no_of_philos;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	int				no_of_meals;
+	int				simulation_start;
+	int				simulation_end;
+	long			simulation_start_time;
+	pthread_mutex_t	print_mutex;
 }	t_constr;
 
 typedef struct s_philo
@@ -73,7 +76,7 @@ int				ft_isdigit(int c);
 int				ft_isnbr(const char *s);
 long			get_time_in_ms(void);
 void			handle_error(char *err_msg);
-void			print_status(int id, char *status);
+void			print_status(int id, t_status status, t_constr *constrs);
 void			smart_sleep(t_constr *constrs, long duration);
 
 #endif
