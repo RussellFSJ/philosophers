@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 23:43:00 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/07 00:08:18 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/07 16:02:26 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	take_forks(t_philo *philo)
 	}
 	else
 	{
-		pthread_mutex_lock(philo->right_fork);		
+		pthread_mutex_lock(philo->right_fork);
 		pthread_mutex_lock(philo->left_fork);
 	}
 }

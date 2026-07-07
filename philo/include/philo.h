@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/07 00:03:09 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/07 16:03:30 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_constr		*constrs_init(int argc, char **argv);
 pthread_mutex_t	*forks_init(int no_of_philos);
 t_philo			**philos_init(int argc, t_constr *constrs);
 void			monitor_routine(pthread_t monitor, t_constr *constrs);
+void			philo_eat(t_philo *philo);
 void			philo_routine(t_philo philo);
 void			start_routines(t_philo *philos, int no_of_ph, t_constr *cnstrs);
 void			start_simulation(t_constr *constr);

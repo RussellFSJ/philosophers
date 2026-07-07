@@ -6,14 +6,13 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:43:05 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/06 23:23:42 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/07 19:28:32 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void wait_for_start(t_constr *constrs);
-static void	take_forks(t_philo *philo);
+static void	wait_for_start(t_constr *constrs);
 
 void	philo_routine(void *arg)
 {
@@ -23,30 +22,14 @@ void	philo_routine(void *arg)
 	wait_for_start(philo->constrs);
 	while (!philo->constrs->simulation_end)
 	{
-		take_forks(philo);
-		philo->last_meal_ts = get_timestamp();
-		philo->meal_count++;
-		philo->status = EATING;
-	
+		philo_eat(philo);
+		philo_sleep(philo);
+		philo_think(philo);
 	}
-	return ;
 }
-static void wait_for_start(t_constr *constrs)
+
+static void	wait_for_start(t_constr *constrs)
 {
 	while (!constrs->simulation_start)
 		usleep(100);
-}
-
-static void	take_forks(t_philo *philo)
-{
-	if (philo->id % 2 == 0)
-	{
-		pthread_mutex_lock(philo->left_fork);
-		pthread_mutex_lock(philo->right_fork);
-	}
-	else
-	{
-		pthread_mutex_lock(philo->right_fork);		
-		pthread_mutex_lock(philo->left_fork);
-	}
 }
