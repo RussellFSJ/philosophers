@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/07 16:03:30 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/07 19:32:20 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,17 @@ typedef struct s_philo
 
 void			print_usage(void);
 int				valid_args(int argc, char **argv);
+void			constrs_cleanup(t_constr *constrs);
 void			forks_cleanup(pthread_mutex_t *forks, int no_of_philos);
+void			philos_cleanup(t_philo *philos);
 t_constr		*constrs_init(int argc, char **argv);
 pthread_mutex_t	*forks_init(int no_of_philos);
 t_philo			**philos_init(int argc, t_constr *constrs);
 void			monitor_routine(pthread_t monitor, t_constr *constrs);
 void			philo_eat(t_philo *philo);
-void			philo_routine(t_philo philo);
+void			philo_routine(void *arg);
+void			philo_sleep(t_philo *philo);
+void			philo_think(t_philo *philo);
 void			start_routines(t_philo *philos, int no_of_ph, t_constr *cnstrs);
 void			start_simulation(t_constr *constr);
 int				start_threads(t_philo *philos, int no_of_ph, t_constr *cnstrs);
