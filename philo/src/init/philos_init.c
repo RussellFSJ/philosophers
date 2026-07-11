@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 18:17:45 by rfoo              #+#    #+#             */
-/*   Updated: 2026/06/22 22:57:23 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/09 16:52:41 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_philo	*philos_init(int no_of_philos, t_constr *constrs)
 	{
 		philos[i].id = i + 1;
 		philos[i].meal_count = 0;
-		philos[i].last_meal_ts = 0;
+		philos[i].last_meal_ts = get_time_in_ms();
 		philos[i].thread = 0;
 		philos[i].left_fork = &forks[i];
 		philos[i].right_fork = &forks[(i + 1) % no_of_philos];

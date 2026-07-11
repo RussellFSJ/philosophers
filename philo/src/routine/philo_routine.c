@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:43:05 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/07 19:28:32 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/09 16:45:12 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	wait_for_start(t_constr *constrs);
 
-void	philo_routine(void *arg)
+void	*philo_routine(void *arg)
 {
 	t_philo		*philo;
 
@@ -26,6 +26,7 @@ void	philo_routine(void *arg)
 		philo_sleep(philo);
 		philo_think(philo);
 	}
+	return (NULL);
 }
 
 static void	wait_for_start(t_constr *constrs)

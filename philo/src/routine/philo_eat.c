@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 23:43:00 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/07 22:04:51 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/09 16:31:29 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	release_forks(t_philo *philo);
 void	philo_eat(t_philo *philo)
 {
 	take_forks(philo);
-	philo->last_meal_ts = get_timestamp();
+	philo->last_meal_ts = get_time_in_ms();
 	philo->meal_count++;
 	philo->status = EATING;
 	print_status(philo->id, philo->status, philo->constrs);

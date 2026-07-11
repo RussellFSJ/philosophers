@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:38:26 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/08 00:12:47 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/12 01:09:13 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	philo_died(t_philo *philos);
 static int	all_philos_full(t_philo *philos);
 
-void	monitor_routine(void *arg)
+void	*monitor_routine(void *arg)
 {
 	t_philo		*philos;
 	t_constr	*constrs;
@@ -25,9 +25,10 @@ void	monitor_routine(void *arg)
 	while (!constrs->simulation_end)
 	{
 		if (philo_died(philos) || all_philos_full(philos))
-			return ;
+			return (NULL);
 		usleep(1000);
 	}
+	return (NULL);
 }
 
 static int	philo_died(t_philo *philos)
@@ -43,8 +44,8 @@ static int	philo_died(t_philo *philos)
 		now = get_time_in_ms();
 		if (now - philos[i].last_meal_ts > constrs->time_to_die)
 		{
-			constrs->simulation_end = 1;
 			print_status(philos[i].id, DEAD, constrs);
+			constrs->simulation_end = 1;
 			return (1);
 		}
 		i++;

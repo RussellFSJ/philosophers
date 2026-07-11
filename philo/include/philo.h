@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/07 22:49:47 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/09 16:47:38 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void			forks_cleanup(pthread_mutex_t *forks, int no_of_philos);
 void			philos_cleanup(t_philo *philos);
 t_constr		*constrs_init(int argc, char **argv);
 pthread_mutex_t	*forks_init(int no_of_philos);
-t_philo			**philos_init(int argc, t_constr *constrs);
-void			monitor_routine(pthread_t monitor, t_constr *constrs);
+t_philo			*philos_init(int argc, t_constr *constrs);
+void			*monitor_routine(void *arg);
 void			philo_eat(t_philo *philo);
-void			philo_routine(void *arg);
+void			*philo_routine(void *arg);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);
 void			start_routines(t_philo *philos, int no_of_ph, t_constr *cnstrs);
