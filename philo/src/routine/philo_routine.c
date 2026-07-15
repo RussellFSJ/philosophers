@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:43:05 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/15 16:06:48 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/15 21:28:53 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	*philo_routine(void *arg)
 	philo = (t_philo *)arg;
 	wait_for_start(philo->constrs);
 	if (philo->id % 2 == 0)
-		usleep(1000);
+		usleep(2000);
 	while (!philo->constrs->simulation_end)
 	{
 		philo_eat(philo);
 		philo_sleep(philo);
 		philo_think(philo);
-		usleep(philo->constrs->time_to_eat / 2);
+		usleep(200);
 	}
 	return (NULL);
 }
@@ -35,5 +35,5 @@ void	*philo_routine(void *arg)
 static void	wait_for_start(t_constr *constrs)
 {
 	while (!constrs->simulation_start)
-		usleep(100);
+		usleep(200);
 }

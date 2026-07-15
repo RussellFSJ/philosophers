@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:38:26 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/15 16:22:11 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/15 18:13:13 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	*monitor_routine(void *arg)
 	while (!constrs->simulation_end)
 	{
 		if (philo_died(philos) || all_philos_full(philos))
-			break;
-		usleep(500);
+			break ;
+		usleep(100);
 	}
 	return (NULL);
 }

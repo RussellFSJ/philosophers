@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/09 16:47:38 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/15 17:37:13 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_philo
 {
 	int				id;
 	int				meal_count;
+	int				has_left_fork;
+	int				has_right_fork;
 	long			last_meal_ts;
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
@@ -68,7 +70,7 @@ void			*philo_routine(void *arg);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);
 void			start_routines(t_philo *philos, int no_of_ph, t_constr *cnstrs);
-void			start_simulation(t_constr *constr);
+void			start_simulation(t_philo *philos, t_constr *constr);
 int				start_threads(t_philo *philos, int no_of_ph, t_constr *cnstrs);
 int				ft_atoi(const char *nptr);
 long			ft_atol(const char *nptr);

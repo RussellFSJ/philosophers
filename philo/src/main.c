@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:40:48 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/09 16:48:05 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/15 17:18:24 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	philos = philos_init(argc, constrs);
-	start_simulation(constrs);
+	start_simulation(philos, constrs);
 	start_routines(philos, ft_atoi(argv[1]), constrs);
 	return (EXIT_SUCCESS);
 }
