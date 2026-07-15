@@ -21,7 +21,6 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	rm -rf $(BUILD_DIR)
-	rm -f $(OBJ_FILES)
 
 fclean:	clean
 	rm -f $(NAME)
