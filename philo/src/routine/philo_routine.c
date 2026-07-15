@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:43:05 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/15 14:42:08 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/15 16:06:48 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*philo_routine(void *arg)
 		philo_eat(philo);
 		philo_sleep(philo);
 		philo_think(philo);
-		usleep(1000);
+		usleep(philo->constrs->time_to_eat / 2);
 	}
 	return (NULL);
 }

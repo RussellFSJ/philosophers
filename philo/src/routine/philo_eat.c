@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 23:43:00 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/09 16:31:29 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/15 16:05:37 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,16 @@ static void	take_forks(t_philo *philo)
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
-		philo->status = TAKEN_FORK;
-		print_status(philo->id, philo->status, philo->constrs);
+		print_status(philo->id, TAKEN_FORK, philo->constrs);
 		pthread_mutex_lock(philo->right_fork);
-		philo->status = TAKEN_FORK;
-		print_status(philo->id, philo->status, philo->constrs);
+		print_status(philo->id, TAKEN_FORK, philo->constrs);
 	}
 	else
 	{
 		pthread_mutex_lock(philo->right_fork);
-		philo->status = TAKEN_FORK;
-		print_status(philo->id, philo->status, philo->constrs);
+		print_status(philo->id, TAKEN_FORK, philo->constrs);
 		pthread_mutex_lock(philo->left_fork);
-		philo->status = TAKEN_FORK;
-		print_status(philo->id, philo->status, philo->constrs);
+		print_status(philo->id, TAKEN_FORK, philo->constrs);
 	}
 }
 
