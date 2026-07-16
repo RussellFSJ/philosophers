@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/15 17:37:13 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/16 16:51:44 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_constr
 	int				simulation_end;
 	long			simulation_start_time;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	sim_end_mutex;
 }	t_constr;
 
 typedef struct s_philo
@@ -52,6 +53,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	meal_mutex;
 	t_status		status;
 	t_constr		*constrs;
 }	t_philo;

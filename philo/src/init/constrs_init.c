@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 21:05:06 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/07 22:50:22 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/16 16:56:16 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_constr	*constrs_init(int argc, char **argv)
 	constrs->simulation_start = 0;
 	constrs->simulation_end = 0;
 	pthread_mutex_init(&constrs->print_mutex, NULL);
+	pthread_mutex_init(&constrs->sim_end_mutex, NULL);
 	if (argc == 6)
 		constrs->no_of_meals = ft_atoi(argv[5]);
 	else

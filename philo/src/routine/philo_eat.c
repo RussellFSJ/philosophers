@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 23:43:00 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/15 18:03:46 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/16 17:53:47 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ static void	release_forks(t_philo *philo);
 void	philo_eat(t_philo *philo)
 {
 	take_forks(philo);
+	pthread_mutex_lock(&philo->meal_mutex);
 	philo->last_meal_ts = get_time_in_ms();
 	philo->meal_count++;
+	pthread_mutex_unlock(&philo->meal_mutex);
 	philo->status = EATING;
 	print_status(philo->id, philo->status, philo->constrs);
 	smart_sleep(philo->constrs, philo->constrs->time_to_eat);

@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:38:26 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/15 18:13:13 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/16 18:18:54 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,18 @@ static int	philo_died(t_philo *philos)
 	constrs = philos[0].constrs;
 	while (i < constrs->no_of_philos)
 	{
+		pthread_mutex_lock(&philos[i].meal_mutex);
 		now = get_time_in_ms();
 		if (now - philos[i].last_meal_ts > constrs->time_to_die)
 		{
+			pthread_mutex_unlock(&philos[i].meal_mutex);
 			print_status(philos[i].id, DEAD, constrs);
+			pthread_mutex_lock(&constrs->sim_end_mutex);
 			constrs->simulation_end = 1;
+			pthread_mutex_unlock(&constrs->sim_end_mutex);
 			return (1);
 		}
+		pthread_mutex_unlock(&philos[i].meal_mutex);
 		i++;
 	}
 	return (0);
@@ -66,13 +71,17 @@ static int	all_philos_full(t_philo *philos)
 		return (0);
 	while (i < constrs->no_of_philos)
 	{
+		pthread_mutex_lock(&philos[i].meal_mutex);
 		if (philos[i].meal_count < constrs->no_of_meals)
 			all_full = 0;
+		pthread_mutex_unlock(&philos[i].meal_mutex);
 		i++;
 	}
 	if (all_full)
 	{
+		pthread_mutex_lock(&constrs->sim_end_mutex);
 		constrs->simulation_end = 1;
+		pthread_mutex_unlock(&constrs->sim_end_mutex);
 		return (1);
 	}
 	return (0);
