@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/16 16:51:44 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/17 00:06:05 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_constr
 	long			simulation_start_time;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	sim_end_mutex;
+	pthread_mutex_t *forks;
 }	t_constr;
 
 typedef struct s_philo
