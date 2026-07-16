@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:38:26 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/16 18:18:54 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/16 22:38:22 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,21 @@ void	*monitor_routine(void *arg)
 {
 	t_philo		*philos;
 	t_constr	*constrs;
+	int			simulation_end;
 
 	philos = (t_philo *)arg;
 	constrs = philos[0].constrs;
-	while (!constrs->simulation_end)
+	pthread_mutex_lock(&constrs->sim_end_mutex);
+	simulation_end = constrs->simulation_end;
+	pthread_mutex_unlock(&constrs->sim_end_mutex);
+	while (!simulation_end)
 	{
 		if (philo_died(philos) || all_philos_full(philos))
 			break ;
 		usleep(100);
+		pthread_mutex_lock(&constrs->sim_end_mutex);
+		simulation_end = constrs->simulation_end;
+		pthread_mutex_unlock(&constrs->sim_end_mutex);
 	}
 	return (NULL);
 }

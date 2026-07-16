@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:40:48 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/15 17:18:24 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/16 21:26:23 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	constrs = constrs_init(argc, argv);
 	if (!constrs)
 	{
-		printf("Error: Failed to initialise contraints.");
+		printf("Error: Failed to initialise contraints.\n");
 		return (EXIT_FAILURE);
 	}
 	philos = philos_init(argc, constrs);
