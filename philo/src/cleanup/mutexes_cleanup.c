@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   constrs_cleanup.c                                  :+:      :+:    :+:   */
+/*   mutexes_cleanup.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/23 00:01:30 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/18 23:06:05 by rfoo             ###   ########.fr       */
+/*   Created: 2026/07/18 21:04:41 by rfoo              #+#    #+#             */
+/*   Updated: 2026/07/18 23:09:58 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	constrs_cleanup(t_constr *constrs)
+void	mutexes_cleanup(t_constr *constrs)
 {
-	if (constrs)
-		free(constrs);
+	pthread_mutex_destroy(&constrs->print_mutex);
+	pthread_mutex_destroy(&constrs->start_mutex);
+	pthread_mutex_destroy(&constrs->end_mutex);
 }
