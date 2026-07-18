@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/17 00:06:05 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/18 23:05:49 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ typedef struct s_constr
 	int				simulation_end;
 	long			simulation_start_time;
 	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	sim_end_mutex;
-	pthread_mutex_t *forks;
+	pthread_mutex_t	start_mutex;
+	pthread_mutex_t	end_mutex;
+	pthread_mutex_t	*forks;
 }	t_constr;
 
 typedef struct s_philo
@@ -63,18 +64,18 @@ void			print_usage(void);
 int				valid_args(int argc, char **argv);
 void			constrs_cleanup(t_constr *constrs);
 void			forks_cleanup(pthread_mutex_t *forks, int no_of_philos);
+void			mutexes_cleanup(t_constr *constrs);
 void			philos_cleanup(t_philo *philos);
 t_constr		*constrs_init(int argc, char **argv);
-pthread_mutex_t	*forks_init(int no_of_philos);
+int				forks_init(t_constr *constrs);
 t_philo			*philos_init(int argc, t_constr *constrs);
 void			*monitor_routine(void *arg);
 void			philo_eat(t_philo *philo);
 void			*philo_routine(void *arg);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);
-void			start_routines(t_philo *philos, int no_of_ph, t_constr *cnstrs);
 void			start_simulation(t_philo *philos, t_constr *constr);
-int				start_threads(t_philo *philos, int no_of_ph, t_constr *cnstrs);
+int				start_threads(t_philo *philos, t_constr *constrs);
 int				ft_atoi(const char *nptr);
 long			ft_atol(const char *nptr);
 int				ft_isdigit(int c);

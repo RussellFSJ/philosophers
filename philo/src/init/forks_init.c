@@ -6,13 +6,23 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 20:04:10 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/17 00:05:05 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/18 21:23:09 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-pthread_mutex_t	*forks_init(int no_of_philos)
+static pthread_mutex_t	*create_forks(int no_of_philos);
+
+int	forks_init(t_constr *constrs)
+{
+	constrs->forks = create_forks(constrs->no_of_philos);
+	if (!constrs->forks)
+		return (0);
+	return (1);
+}
+
+static pthread_mutex_t	*create_forks(int no_of_philos)
 {
 	int				i;
 	pthread_mutex_t	*forks;
