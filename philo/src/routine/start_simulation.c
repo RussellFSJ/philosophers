@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 16:10:58 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/18 23:18:13 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/19 00:14:18 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ void	start_simulation(t_philo *philos, t_constr *constrs)
 
 static void	begin_simulation(t_philo *philos, t_constr *constrs)
 {
-	int	i;
+	long	start;
+	int		i;
 
-	constrs->simulation_start_time = get_time_in_ms();
+	start = get_time_in_ms();
+	constrs->simulation_start_time = start;
 	i = 0;
 	while (i < constrs->no_of_philos)
-		philos[i++].last_meal_ts = constrs->simulation_start_time;
+		philos[i++].last_meal_ts = start;
 	pthread_mutex_lock(&constrs->start_mutex);
 	constrs->simulation_start = 1;
 	pthread_mutex_unlock(&constrs->start_mutex);
@@ -54,15 +56,10 @@ static void	begin_simulation(t_philo *philos, t_constr *constrs)
 static void	join_philos(t_philo *philos)
 {
 	int	i;
-	int	no_of_philos;
 
 	if (!philos)
 		return ;
 	i = 0;
-	no_of_philos = philos[0].constrs;
-	while (i < no_of_philos)
-	{
-		pthread_join(philos[i].thread, NULL);
-		i++;
-	}
+	while (i < philos[0].constrs->no_of_philos)
+		pthread_join(philos[i++].thread, NULL);
 }

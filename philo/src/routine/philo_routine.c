@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:43:05 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/18 23:12:48 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/19 00:16:59 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,15 @@ void	*philo_routine(void *arg)
 
 static void	wait_for_start(t_constr *constrs)
 {
-	int	simulation_start;
+	int	started;
 
-	pthread_mutex_lock(&constrs->start_mutex);
-	simulation_start = constrs->simulation_start;
-	pthread_mutex_unlock(&constrs->start_mutex);
-	while (!simulation_start)
-		usleep(200);
+	started = 0;
+	while (!started)
+	{
+		pthread_mutex_lock(&constrs->start_mutex);
+		started = constrs->simulation_start;
+		pthread_mutex_unlock(&constrs->start_mutex);
+		if (!started)
+			usleep(200);
+	}
 }
