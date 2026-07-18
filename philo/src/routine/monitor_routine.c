@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:38:26 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/16 22:38:22 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/18 23:05:49 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ void	*monitor_routine(void *arg)
 
 	philos = (t_philo *)arg;
 	constrs = philos[0].constrs;
-	pthread_mutex_lock(&constrs->sim_end_mutex);
+	pthread_mutex_lock(&constrs->end_mutex);
 	simulation_end = constrs->simulation_end;
-	pthread_mutex_unlock(&constrs->sim_end_mutex);
+	pthread_mutex_unlock(&constrs->end_mutex);
 	while (!simulation_end)
 	{
 		if (philo_died(philos) || all_philos_full(philos))
 			break ;
 		usleep(100);
-		pthread_mutex_lock(&constrs->sim_end_mutex);
+		pthread_mutex_lock(&constrs->end_mutex);
 		simulation_end = constrs->simulation_end;
-		pthread_mutex_unlock(&constrs->sim_end_mutex);
+		pthread_mutex_unlock(&constrs->end_mutex);
 	}
 	return (NULL);
 }
@@ -54,9 +54,9 @@ static int	philo_died(t_philo *philos)
 		{
 			pthread_mutex_unlock(&philos[i].meal_mutex);
 			print_status(philos[i].id, DEAD, constrs);
-			pthread_mutex_lock(&constrs->sim_end_mutex);
+			pthread_mutex_lock(&constrs->end_mutex);
 			constrs->simulation_end = 1;
-			pthread_mutex_unlock(&constrs->sim_end_mutex);
+			pthread_mutex_unlock(&constrs->end_mutex);
 			return (1);
 		}
 		pthread_mutex_unlock(&philos[i].meal_mutex);
@@ -86,9 +86,9 @@ static int	all_philos_full(t_philo *philos)
 	}
 	if (all_full)
 	{
-		pthread_mutex_lock(&constrs->sim_end_mutex);
+		pthread_mutex_lock(&constrs->end_mutex);
 		constrs->simulation_end = 1;
-		pthread_mutex_unlock(&constrs->sim_end_mutex);
+		pthread_mutex_unlock(&constrs->end_mutex);
 		return (1);
 	}
 	return (0);

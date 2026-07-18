@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:43:05 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/16 22:33:55 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/18 23:12:48 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	*philo_routine(void *arg)
 		usleep(2000);
 	while (1)
 	{
-		pthread_mutex_lock(&philo->constrs->sim_end_mutex);
+		pthread_mutex_lock(&philo->constrs->end_mutex);
 		simulation_end = philo->constrs->simulation_end;
-		pthread_mutex_unlock(&philo->constrs->sim_end_mutex);
+		pthread_mutex_unlock(&philo->constrs->end_mutex);
 		if (simulation_end)
 			break ;
 		philo_eat(philo);
@@ -40,6 +40,11 @@ void	*philo_routine(void *arg)
 
 static void	wait_for_start(t_constr *constrs)
 {
-	while (!constrs->simulation_start)
+	int	simulation_start;
+
+	pthread_mutex_lock(&constrs->start_mutex);
+	simulation_start = constrs->simulation_start;
+	pthread_mutex_unlock(&constrs->start_mutex);
+	while (!simulation_start)
 		usleep(200);
 }
