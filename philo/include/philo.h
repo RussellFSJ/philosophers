@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/20 21:25:13 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/20 23:20:20 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,32 @@ typedef struct s_philo
 	t_constr		*constrs;
 }	t_philo;
 
-void			print_usage(void);
-int				valid_args(int argc, char **argv);
-void			constrs_cleanup(t_constr *constrs);
-void			forks_cleanup(pthread_mutex_t *forks, int no_of_philos);
-void			mutexes_cleanup(t_constr *constrs);
-void			philos_cleanup(t_philo *philos);
-t_constr		*constrs_init(int argc, char **argv);
-int				forks_init(t_constr *constrs);
-t_philo			*philos_init(int argc, t_constr *constrs);
-void			*monitor_routine(void *arg);
-void			philo_eat(t_philo *philo);
-void			*philo_routine(void *arg);
-void			philo_sleep(t_philo *philo);
-void			philo_think(t_philo *philo);
-void			start_simulation(t_philo *philos, t_constr *constr);
-int				start_threads(t_philo *philos, t_constr *constrs);
-int				ft_atoi(const char *nptr);
-long			ft_atol(const char *nptr);
-int				ft_isdigit(int c);
-int				ft_isnbr(const char *s);
-long			get_time_in_ms(void);
-void			handle_error(char *err_msg);
-void			print_status(int id, t_status status, t_constr *constrs);
-void			smart_sleep(t_constr *constrs, long duration);
-int				safe_read(pthread_mutex_t *mutex, int *flag);
-void			safe_update(pthread_mutex_t *mutex, int *flag, int value);
+void		print_usage(void);
+int			valid_args(int argc, char **argv);
+void		cleanup(t_philo *philos, t_constr *constrs);
+void		constrs_cleanup(t_constr *constrs);
+void		forks_cleanup(t_constr *constrs);
+void		mutexes_cleanup(t_constr *constrs);
+void		philos_cleanup(t_philo *philos);
+t_constr	*constrs_init(int argc, char **argv);
+int			forks_init(t_constr *constrs);
+t_philo		*philos_init(t_constr *constrs);
+void		*monitor_routine(void *arg);
+void		philo_eat(t_philo *philo);
+void		*philo_routine(void *arg);
+void		philo_sleep(t_philo *philo);
+void		philo_think(t_philo *philo);
+void		start_simulation(t_philo *philos, t_constr *constr);
+int			start_threads(t_philo *philos, t_constr *constrs);
+int			ft_atoi(const char *nptr);
+long		ft_atol(const char *nptr);
+int			ft_isdigit(int c);
+int			ft_isnbr(const char *s);
+long		get_time_in_ms(void);
+void		handle_error(char *err_msg);
+void		print_status(int id, t_status status, t_constr *constrs);
+int			safe_read(pthread_mutex_t *mutex, int *flag);
+void		safe_update(pthread_mutex_t *mutex, int *flag, int value);
+void		smart_sleep(t_constr *constrs, long duration);
 
 #endif

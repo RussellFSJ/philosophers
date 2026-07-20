@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks_cleanup.c                                    :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/22 21:09:16 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/20 23:16:35 by rfoo             ###   ########.fr       */
+/*   Created: 2026/07/20 22:52:12 by rfoo              #+#    #+#             */
+/*   Updated: 2026/07/20 23:20:37 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	forks_cleanup(t_constr *constrs)
+void	cleanup(t_philo *philos, t_constr *constrs)
 {
-	int	i;
-
-	if (!constrs->forks)
-		return ;
-	i = 0;
-	while (i < constrs->no_of_philos)
-		pthread_mutex_destroy(&constrs->forks[i++]);
-	free(constrs->forks);
+	if (philos)
+		philos_cleanup(philos);
+	if (constrs)
+		constrs_cleanup(constrs);
 }

@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 00:01:30 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/18 23:06:05 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/20 23:16:58 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	constrs_cleanup(t_constr *constrs)
 {
-	if (constrs)
-		free(constrs);
+	if (!constrs)
+		return ;
+	forks_cleanup(constrs);
+	mutexes_cleanup(constrs);
+	free(constrs);
 }
