@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 16:10:58 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/19 00:14:18 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/20 21:46:10 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@ void	start_simulation(t_philo *philos, t_constr *constrs)
 	if (pthread_create(&monitor, NULL, monitor_routine, philos) != 0)
 	{
 		printf("Error: Failed to create monitor thread.\n");
-		pthread_mutex_lock(&constrs->end_mutex);
-		constrs->simulation_end = 1;
-		pthread_mutex_unlock(&constrs->end_mutex);
-		pthread_mutex_lock(&constrs->start_mutex);
-		constrs->simulation_start = 1;
-		pthread_mutex_unlock(&constrs->start_mutex);
+		safe_update(&constrs->end_mutex, &constrs->simulation_end, 1);
+		safe_update(&constrs->start_mutex, &constrs->simulation_start, 1);
 		join_philos(philos);
 		return ;
 	}
@@ -48,9 +44,7 @@ static void	begin_simulation(t_philo *philos, t_constr *constrs)
 	i = 0;
 	while (i < constrs->no_of_philos)
 		philos[i++].last_meal_ts = start;
-	pthread_mutex_lock(&constrs->start_mutex);
-	constrs->simulation_start = 1;
-	pthread_mutex_unlock(&constrs->start_mutex);
+	safe_update(&constrs->start_mutex, &constrs->simulation_start, 1);
 }
 
 static void	join_philos(t_philo *philos)

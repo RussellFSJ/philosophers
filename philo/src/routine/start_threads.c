@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 16:56:54 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/19 00:01:10 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/20 22:35:34 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	start_threads(t_philo *philos, t_constr *constrs)
 	i = 0;
 	if (constrs->no_of_philos == 1)
 	{
-		if (pthread_create(&philos[0].thread, NULL
-			,one_philo_routine, &philos[0]) != 0)
+		if (pthread_create(&philos[0].thread, NULL,
+				one_philo_routine, &philos[0]) != 0)
 			return (printf("Error: Failed to create philosopher thread.\n"), 0);
 		pthread_join(philos[0].thread, NULL);
 		return (1);
@@ -34,11 +34,8 @@ int	start_threads(t_philo *philos, t_constr *constrs)
 			!= 0)
 		{
 			printf("Error: Failed to create philosopher thread %d.\n", i + 1);
-			pthread_mutex_lock(&constrs->end_mutex);
-			constrs->simulation_end = 1;
-			pthread_mutex_unlock(&constrs->end_mutex);
-			join_created_threads(philos, i);
-			return (0);
+			safe_update(&constrs->end_mutex, &constrs->simulation_end, 1);
+			return (join_created_threads(philos, i), 0);
 		}
 		i++;
 	}
@@ -56,9 +53,7 @@ static void	*one_philo_routine(void *arg)
 	print_status(philo->id, TAKEN_FORK, constrs);
 	smart_sleep(constrs, constrs->time_to_die);
 	pthread_mutex_unlock(philo->left_fork);
-	pthread_mutex_lock(&constrs->end_mutex);
-	constrs->simulation_end = 1;
-	pthread_mutex_unlock(&constrs->end_mutex);
+	safe_update(&constrs->end_mutex, &constrs->simulation_end, 1);
 	print_status(philo->id, DEAD, constrs);
 	return (NULL);
 }

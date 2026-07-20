@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/18 23:05:49 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/20 21:25:13 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,7 @@ long			get_time_in_ms(void);
 void			handle_error(char *err_msg);
 void			print_status(int id, t_status status, t_constr *constrs);
 void			smart_sleep(t_constr *constrs, long duration);
+int				safe_read(pthread_mutex_t *mutex, int *flag);
+void			safe_update(pthread_mutex_t *mutex, int *flag, int value);
 
 #endif

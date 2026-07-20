@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   smart_sleep.c                                      :+:      :+:    :+:   */
+/*   safe_update.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/06 23:48:47 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/20 22:37:14 by rfoo             ###   ########.fr       */
+/*   Created: 2026/07/20 20:19:46 by rfoo              #+#    #+#             */
+/*   Updated: 2026/07/20 20:34:10 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	smart_sleep(t_constr *constrs, long duration)
+void	safe_update(pthread_mutex_t *mutex, int *flag, int value)
 {
-	long	start;
-	long	now;
-
-	start = get_time_in_ms();
-	while (!safe_read(&constrs->end_mutex, &constrs->simulation_end))
-	{
-		now = get_time_in_ms();
-		if (now - start >= duration)
-			return ;
-		usleep(100);
-	}
+	pthread_mutex_lock(mutex);
+	*flag = value;
+	pthread_mutex_unlock(mutex);
 }
