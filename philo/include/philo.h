@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:05:22 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/20 23:20:20 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/20 23:56:59 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void		philo_sleep(t_philo *philo);
 void		philo_think(t_philo *philo);
 void		start_simulation(t_philo *philos, t_constr *constr);
 int			start_threads(t_philo *philos, t_constr *constrs);
+void		wait_for_start(t_constr *constrs);
 int			ft_atoi(const char *nptr);
 long		ft_atol(const char *nptr);
 int			ft_isdigit(int c);

@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:38:26 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/20 22:34:57 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/20 23:57:36 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	*monitor_routine(void *arg)
 
 	philos = (t_philo *)arg;
 	constrs = philos[0].constrs;
+	wait_for_start(philos[0].constrs);
 	simulation_end = safe_read(&constrs->end_mutex, &constrs->simulation_end);
 	while (!simulation_end)
 	{

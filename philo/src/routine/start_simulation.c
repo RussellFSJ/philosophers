@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 16:10:58 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/20 21:46:10 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/21 00:02:11 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ static void	begin_simulation(t_philo *philos, t_constr *constrs)
 	constrs->simulation_start_time = start;
 	i = 0;
 	while (i < constrs->no_of_philos)
-		philos[i++].last_meal_ts = start;
+	{
+		pthread_mutex_lock(&philos[i].meal_mutex);
+		philos[i].last_meal_ts = start;
+		pthread_mutex_unlock(&philos[i].meal_mutex);
+		i++;
+	}
 	safe_update(&constrs->start_mutex, &constrs->simulation_start, 1);
 }
 

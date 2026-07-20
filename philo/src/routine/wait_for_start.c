@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_routine.c                                    :+:      :+:    :+:   */
+/*   wait_for_start.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/25 19:43:05 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/20 23:57:28 by rfoo             ###   ########.fr       */
+/*   Created: 2026/07/20 23:56:31 by rfoo              #+#    #+#             */
+/*   Updated: 2026/07/20 23:56:45 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*philo_routine(void *arg)
+void	wait_for_start(t_constr *constrs)
 {
-	t_philo	*philo;
-	int		simulation_end;
-
-	philo = (t_philo *)arg;
-	wait_for_start(philo->constrs);
-	if (philo->id % 2 == 0)
-		usleep(2000);
-	while (1)
-	{
-		simulation_end = safe_read(&philo->constrs->end_mutex,
-				&philo->constrs->simulation_end);
-		if (simulation_end)
-			break ;
-		philo_eat(philo);
-		philo_sleep(philo);
-		philo_think(philo);
+	while (!safe_read(&constrs->start_mutex, &constrs->simulation_start))
 		usleep(200);
-	}
-	return (NULL);
 }
