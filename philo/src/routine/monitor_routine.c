@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 19:38:26 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/20 23:57:36 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/22 16:15:53 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static int	philo_died(t_philo *philos)
 	constrs = philos[0].constrs;
 	while (i < constrs->no_of_philos)
 	{
-		pthread_mutex_lock(&philos[i].meal_mutex);
 		now = get_time_in_ms();
+		pthread_mutex_lock(&philos[i].meal_mutex);
 		if (now - philos[i].last_meal_ts > constrs->time_to_die)
 		{
 			pthread_mutex_unlock(&philos[i].meal_mutex);

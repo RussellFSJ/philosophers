@@ -6,7 +6,7 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/28 19:14:42 by rfoo              #+#    #+#             */
-/*   Updated: 2026/07/20 22:33:08 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/07/22 16:49:30 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	print_status(int id, t_status status, t_constr *constrs)
 {
 	long	timestamp;
 
-	pthread_mutex_lock(&constrs->print_mutex);
 	timestamp = get_time_in_ms() - constrs->simulation_start_time;
+	pthread_mutex_lock(&constrs->print_mutex);
 	if (!safe_read(&constrs->end_mutex, &constrs->simulation_end)
 		|| status == DEAD)
 	{
