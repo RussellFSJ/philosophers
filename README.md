@@ -22,7 +22,7 @@ _This project has been created as part of the 42 curriculum by rfoo._
 
 Each philosopher's state change is printed in the following format:
 
-```text
+```
 timestamp_in_ms X has taken a fork
 timestamp_in_ms X is eating
 timestamp_in_ms X is sleeping
